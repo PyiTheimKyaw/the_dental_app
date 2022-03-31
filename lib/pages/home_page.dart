@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';
+import 'package:the_dental_app/custom_painter/verticle_time_line.dart';
 import 'package:the_dental_app/custom_widgets/patient_horizontal_listview.dart';
 import 'package:the_dental_app/custom_widgets/text_widget.dart';
 import 'package:dotted_line/dotted_line.dart';
@@ -57,72 +58,15 @@ class HomePage extends StatelessWidget {
                   Container(
                       height: MediaQuery.of(context).size.height / 1.5,
                       width: double.infinity,
-                      padding: EdgeInsets.only(left: 20,top: 100),
+                      padding: EdgeInsets.only(left: 20, top: 100),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           TimeAndEventTitleView(),
-                          // Container(
-                          //   width: double.infinity,
-                          //   height:MediaQuery.of(context).size.height / 2,
-                          //   child: SingleChildScrollView(
-                          //     child: Row(
-                          //       crossAxisAlignment: CrossAxisAlignment.start,
-                          //       children: [
-                          //
-                          //         ListView.builder(
-                          //             scrollDirection: Axis.vertical,
-                          //             itemCount : timeList.length,
-                          //             itemBuilder: (context,index){
-                          //           return Row(
-                          //             children: [
-                          //               Container(child: Text(timeList[index]),),
-                          //             ],
-                          //           );
-                          //         }),
-                          //
-                          //         TimeListView(
-                          //           timeList: timeList,
-                          //         ),
-                          //         const SizedBox(
-                          //           width: 28.0,
-                          //         ),
-                          //         // SizedBox(
-                          //         //   height: 100,
-                          //         //   width: 10,
-                          //         //   child: CustomPaint(
-                          //         //     painter: VerticalTimeLine(),
-                          //         //   ),
-                          //         // ),
-                          //         Dash(
-                          //           direction: Axis.vertical,
-                          //             length: 660,
-                          //             dashLength: 5,
-                          //             dashColor: Colors.grey),
-                          //         const SizedBox(
-                          //           width: 28.0,
-                          //         ),
-                          //         Column(
-                          //           children: eventList
-                          //               .map((e) => Padding(
-                          //                     padding: const EdgeInsets.symmetric(
-                          //                       vertical: 16.0,
-                          //                     ),
-                          //                     child: EventItemView(
-                          //                       onTap: () {
-                          //                         _navigateToDetailsScreen(context);
-                          //                       },
-                          //                     ),
-                          //                   ))
-                          //               .toList(),
-                          //         )
-                          //       ],
-                          //     ),
-                          //   ),
-                          // ),
                           Container(
                             width: double.infinity,
+
                             // color: Colors.red,
                             height: MediaQuery.of(context).size.height / 2,
                             child: ListView.builder(
@@ -150,75 +94,10 @@ class HomePage extends StatelessWidget {
                                                   width: 50,
                                                   child: Text(timeList[index]),
                                                 ),
-                                                // Column(
-                                                //   crossAxisAlignment:
-                                                //   CrossAxisAlignment.center,
-                                                //   mainAxisAlignment:
-                                                //   MainAxisAlignment.start,
-                                                //   children: <Widget>[
-                                                //     SizedBox(
-                                                //       width: 35,
-                                                //     ),
-                                                //     (timeList[index] == "8:30")
-                                                //         ? Column(
-                                                //       children: [
-                                                //         Dash(
-                                                //             direction:
-                                                //             Axis.vertical,
-                                                //             length: 35,
-                                                //             dashLength: 6,
-                                                //             dashColor:
-                                                //             Colors.grey),
-                                                //         Container(
-                                                //           // margin: EdgeInsets.only(top: 16),
-                                                //           height: 15,
-                                                //           width: 15,
-                                                //           decoration: BoxDecoration(
-                                                //               shape: BoxShape
-                                                //                   .circle,
-                                                //               border: Border.all(
-                                                //                   width: 1.5,
-                                                //                   color: Colors
-                                                //                       .greenAccent)),
-                                                //         ),
-                                                //       ],
-                                                //     )
-                                                //         : Dash(
-                                                //         direction:
-                                                //         Axis.vertical,
-                                                //         length: 30,
-                                                //         dashLength: 45,
-                                                //         dashColor: Colors.grey),
-                                                //   ],
-                                                // ),
                                               ],
                                             );
                                           }),
                                     ),
-                                    // Column(children: <Widget>[
-                                    //
-                                    //   Dash(
-                                    //       direction: Axis.vertical,
-                                    //       length: 60,
-                                    //       dashLength: 5,
-                                    //       dashColor: Colors.green),
-                                    //   Container(
-                                    //     height: 15,
-                                    //     width: 15,
-                                    //     decoration: BoxDecoration(
-                                    //         shape: BoxShape.circle,
-                                    //         border: Border.all(width: 2, color: Colors.red)),
-                                    //     child: Container(
-                                    //       height: 20,
-                                    //     ),
-                                    //   ),
-                                    //   Dash(
-                                    //       direction: Axis.vertical,
-                                    //       length: 170,
-                                    //       dashLength: 30,
-                                    //       dashColor: Colors.green),
-                                    // ],
-                                    // ),
                                     SizedBox(
                                       width: 5,
                                     ),
@@ -249,11 +128,23 @@ class HomePage extends StatelessWidget {
                                           decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                               border: Border.all(
-                                                  width: 2, color: Colors.red)),
+                                                  width: 2, color: Colors.white24)),
                                           child: Container(
-                                            height: 20,
+                                            height: 2,
+                                            width: 2  ,
+                                            decoration: BoxDecoration(
+                                              color: Colors.blue,
+                                                shape: BoxShape.circle,
+                                                border: Border.all(
+                                                    width: 2, color: Colors.white60)),
                                           ),
                                         ),
+                                        // Container(
+                                        //   height:370,
+                                        //   child: CustomPaint(
+                                        //     painter: VerticalTimeLine(),
+                                        //   ),
+                                        // ),
                                         Container(
                                           width: 2,
                                           height: 370,
@@ -274,210 +165,58 @@ class HomePage extends StatelessWidget {
                                     ),
                                     Container(
                                       // width: 300,
-                                      width: MediaQuery.of(context).size.width /1.3,
-                                      height: MediaQuery.of(context).size.height/1.89,
-                                      color:Color.fromRGBO(221,236,249,1),
+                                      width: MediaQuery.of(context).size.width /
+                                          1.3,
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              1.89,
+                                      color: Color.fromRGBO(221, 236, 249, 1),
                                       child: ListView.builder(
                                         scrollDirection: Axis.vertical,
-                                       shrinkWrap: true,
-                                       physics: NeverScrollableScrollPhysics(),
-                                       itemCount:eventList.length,
-                                        itemBuilder: (context,index){
-                                         return Container(
-                                           padding: EdgeInsets.only(top: 13,right: 50),
-                                            color:  (eventList[index] ==1) ? Color.fromRGBO(240,246,252, 1) :Color.fromRGBO(221,236,249,1),
-                                           child: EventItemView(
-                                             color: (eventList[index] ==1) ? Color.fromRGBO(209,214,219, 1) :Colors.black,
-                                             onTap: () {
-                                               (eventList[index] == 1) ? (){}:
-                                               _navigateToDetailsScreen(
-                                                   context);
-                                             },
-                                           ),
-                                         );
-                                         //   Container(
-                                         //   width: 60,
-                                         //   height: 60,
-                                         //   decoration: BoxDecoration(
-                                         //     color: Colors.white,
-                                         //     borderRadius: BorderRadius.circular(30),
-                                         //   ),
-                                         //   child: Row(
-                                         //     children: [
-                                         //       const Icon(
-                                         //         Icons.alarm,
-                                         //         size: 18.0,
-                                         //         color: Colors.black38,
-                                         //       ),
-                                         //       const SizedBox(
-                                         //         width: 8.0,
-                                         //       ),
-                                         //       Column(
-                                         //         crossAxisAlignment: CrossAxisAlignment.start,
-                                         //         mainAxisSize: MainAxisSize.min,
-                                         //         children: [
-                                         //           TextWidget(
-                                         //             text: "Francisco Elliott",
-                                         //             color: Colors.black,
-                                         //           ),
-                                         //           const SizedBox(
-                                         //             height: 3.0,
-                                         //           ),
-                                         //           TextWidget(
-                                         //             text: "8:00 - 8:30",
-                                         //             color: Colors.black,
-                                         //           )
-                                         //         ],
-                                         //       )
-                                         //     ],
-                                         //   ),
-                                         // );
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        itemCount: eventList.length,
+                                        itemBuilder: (context, index) {
+                                          return Container(
+                                            padding: EdgeInsets.only(
+                                                top: 15, right: 50),
+                                            color: (eventList[index] == 1)
+                                                ? Color.fromRGBO(
+                                                    240, 246, 252, 1)
+                                                : Color.fromRGBO(
+                                                    221, 236, 249, 1),
+                                            child: EventItemView(
+                                              iconBgColor:
+                                                  (eventList[index] == 1)
+                                                      ? Color.fromRGBO(
+                                                          228, 234, 241, 1)
+                                                      : Color.fromRGBO(
+                                                          210, 234, 253, 1),
+                                              iconColor: (eventList[index] == 1)
+                                                  ? Color.fromRGBO(
+                                                      184, 191, 198, 1)
+                                                  : Color.fromRGBO(
+                                                      119, 157, 189, 1),
+                                              textColor: (eventList[index] == 1)
+                                                  ? Color.fromRGBO(
+                                                      209, 214, 219, 1)
+                                                  : Colors.black,
+                                              onTap: () {
+                                                (eventList[index] == 1)
+                                                    ? () {}
+                                                    : _navigateToDetailsScreen(
+                                                        context);
+                                              },
+                                            ),
+                                          );
                                         },
-
                                       ),
                                     ),
-                                    // Container(
-                                    //   width:
-                                    //       MediaQuery.of(context).size.width /
-                                    //           2,
-                                    //   // color:Colors.blue,
-                                    //   child: ListView.builder(
-                                    //       shrinkWrap: true,
-                                    //       physics:
-                                    //           NeverScrollableScrollPhysics(),
-                                    //       itemCount: eventList.length,
-                                    //       itemBuilder: (context, index) {
-                                    //         return Padding(
-                                    //           padding: const EdgeInsets.only(
-                                    //               bottom: 29),
-                                    //           child: EventItemView(
-                                    //             onTap: () {
-                                    //               _navigateToDetailsScreen(
-                                    //                   context);
-                                    //             },
-                                    //           ),
-                                    //         );
-                                    //       }),
-                                    // ),
-                                    // Column(
-                                    //   children: eventList
-                                    //       .map((e) => Padding(
-                                    //             padding: const EdgeInsets.symmetric(
-                                    //               vertical: 16.0,
-                                    //             ),
-                                    //             child: EventItemView(
-                                    //               onTap: () {
-                                    //                 _navigateToDetailsScreen(
-                                    //                     context);
-                                    //               },
-                                    //             ),
-                                    //           ))
-                                    //       .toList(),
-                                    // ),
                                   ],
                                 );
                               },
                             ),
                           ),
-                          // Container(
-                          //   width: double.infinity,
-                          //   height: MediaQuery.of(context).size.height / 2,
-                          //   child: ListView.builder(
-                          //     itemCount: timeList.length,
-                          //     itemBuilder: (context, index) {
-                          //       return Container(
-                          //         width:70,
-                          //         child: Row(
-                          //           crossAxisAlignment:
-                          //               CrossAxisAlignment.start,
-                          //           mainAxisAlignment:
-                          //               MainAxisAlignment.start,
-                          //           children: [
-                          //             Container(
-                          //                 width: 35,
-                          //                 child: Text(timeList[index])),
-                          //             // SizedBox(
-                          //             //   width: 10,
-                          //             // ),
-                          //             Column(
-                          //               crossAxisAlignment:
-                          //                   CrossAxisAlignment.center,
-                          //               mainAxisAlignment:
-                          //                   MainAxisAlignment.start,
-                          //               children: <Widget>[
-                          //                 SizedBox(
-                          //                   width: 63,
-                          //                 ),
-                          //                 (timeList[index] == "8:30")
-                          //                     ? Column(
-                          //                         children: [
-                          //                           Dash(
-                          //                               direction: Axis
-                          //                                   .vertical,
-                          //                               length: 50,
-                          //                               dashLength: 6,
-                          //                               dashColor:
-                          //                               Colors
-                          //                                   .grey),
-                          //                           Container(
-                          //                             // margin: EdgeInsets.only(top: 16),
-                          //                             height: 15,
-                          //                             width: 15,
-                          //                             decoration: BoxDecoration(
-                          //                                 shape: BoxShape
-                          //                                     .circle,
-                          //                                 border: Border.all(
-                          //                                     width:
-                          //                                         1.5,
-                          //                                     color: Colors
-                          //                                         .greenAccent)),
-                          //                           ),
-                          //
-                          //                         ],
-                          //                       )
-                          //                     : Dash(
-                          //                         direction:
-                          //                             Axis.vertical,
-                          //                         length: 50,
-                          //                         dashLength: 55,
-                          //                         dashColor:
-                          //                             Colors.grey),
-                          //               ],
-                          //             ),
-                          //             // SizedBox(width: 43,),
-                          //             // VerticalDivider(
-                          //             //   thickness: 1,
-                          //             //   width: 5,
-                          //             //   color: Colors.black,
-                          //             // ),
-                          //             // SizedBox(width: 20,),
-                          //
-                          //             EventItemView(
-                          //               onTap: () {
-                          //                 _navigateToDetailsScreen(
-                          //                     context);
-                          //               },
-                          //             ),
-                          //             // Column(
-                          //             //   children: eventList
-                          //             //       .map((e) => Padding(
-                          //             //     padding: const EdgeInsets.symmetric(
-                          //             //       vertical: 16.0,
-                          //             //     ),
-                          //             //     child: EventItemView(
-                          //             //       onTap: () {
-                          //             //         _navigateToDetailsScreen(context);
-                          //             //       },
-                          //             //     ),
-                          //             //   ))
-                          //             //       .toList(),
-                          //             // ),
-                          //           ],
-                          //         ),
-                          //       );
-                          //     },
-                          //   ),
-                          // ),
                         ],
                       )),
                 ],
@@ -503,10 +242,15 @@ void _navigateToDetailsScreen(BuildContext context) {
 
 class EventItemView extends StatelessWidget {
   final Function onTap;
-  final Color color;
+  final Color textColor;
+  final Color iconColor;
+  final Color iconBgColor;
 
-
-  EventItemView({required this.onTap,required this.color});
+  EventItemView(
+      {required this.onTap,
+      required this.textColor,
+      required this.iconColor,
+      required this.iconBgColor});
 
   @override
   Widget build(BuildContext context) {
@@ -518,41 +262,70 @@ class EventItemView extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(
             horizontal: 8.0,
+            // vertical: 16,
           ),
-          height: 68.0,
-          width: 13 * 13,
+          height: 68,
+          width: 80,
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(5),
+            shape: BoxShape.circle,
+            // borderRadius: BorderRadius.circular(16),
           ),
-          child: Row(
-            children: [
-               Icon(
-                Icons.alarm,
-                size: 18.0,
-                color:color,
-              ),
-              const SizedBox(
-                width: 8.0,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextWidget(
-                    text: "Francisco Elliott",
-                    color: color,
+          child: Center(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: iconBgColor,
                   ),
-                  const SizedBox(
-                    height: 3.0,
+                  child: Center(
+                    child: Icon(
+                      Icons.medical_services_outlined,
+                      size: 20,
+                      color: iconColor,
+                    ),
                   ),
-                  TextWidget(
-                    text: "8:00 - 8:30",
-                    color: color,
-                  )
-                ],
-              )
-            ],
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextWidget(
+                      text: "Francisco Elliott",
+                      color: textColor,
+                      size: 15,
+                    ),
+                    const SizedBox(
+                      height: 3.0,
+                    ),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.alarm_sharp,
+                          size: 18.0,
+                          color: textColor,
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        TextWidget(
+                          text: "8:00 - 8:30",
+                          color: textColor,
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
