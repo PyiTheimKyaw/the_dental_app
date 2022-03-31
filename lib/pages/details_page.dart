@@ -76,6 +76,9 @@ class _DetailsPageState extends State<DetailsPage> {
               width: 200,
               child: CustomPaint(
                 painter: CustomClock(),
+                child: Center(
+                  child: TextWidget(text: "2:45 pm",size: 19,),
+                ),
               ),
             ),
           ),
