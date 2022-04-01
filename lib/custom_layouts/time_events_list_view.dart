@@ -4,16 +4,39 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:the_dental_app/custom_widgets/text_widget.dart';
 import 'package:the_dental_app/pages/details_page.dart';
 
-class TimeEventsListSectionView extends StatelessWidget {
+class TimeEventsListSectionView extends StatefulWidget {
   const TimeEventsListSectionView({
     Key? key,
     required this.timeList,
     required this.eventList,
+    required this.onListEndReached,
   }) : super(key: key);
 
   final List<String> timeList;
   final List<int> eventList;
+  final Function onListEndReached;
 
+  @override
+  State<TimeEventsListSectionView> createState() => _TimeEventsListSectionViewState();
+}
+
+class _TimeEventsListSectionViewState extends State<TimeEventsListSectionView> {
+  final _scrollController = ScrollController();
+  @override
+  void initState() {
+    _scrollController.addListener(() {
+      if (_scrollController.position.atEdge) {
+        if (_scrollController.position.pixels == 0) {
+          print("Start of the list view");
+        } else {
+          print("End of the list view");
+          widget.onListEndReached();
+        }
+      }
+    });
+
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
@@ -21,6 +44,7 @@ class TimeEventsListSectionView extends StatelessWidget {
       backgroundColor: Colors.white,
       color: Colors.black,
       child: ListView.builder(
+        controller: _scrollController,
         scrollDirection: Axis.vertical,
         itemCount: 1,
         itemBuilder: (context, index) {
@@ -28,7 +52,7 @@ class TimeEventsListSectionView extends StatelessWidget {
               ? Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TimeListSectionView(timeList: timeList),
+                    TimeListSectionView(timeList: widget.timeList),
                     SizedBox(
                       width: 5,
                     ),
@@ -38,7 +62,7 @@ class TimeEventsListSectionView extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 1.3,
                       height: MediaQuery.of(context).size.height / 1.8,
                       color: Color.fromRGBO(221, 236, 249, 1),
-                      child: EventsSectionView(eventList: eventList),
+                      child: EventsSectionView(eventList: widget.eventList),
                     ),
                   ],
                 )

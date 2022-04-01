@@ -20,7 +20,7 @@ class DetailsPage extends StatelessWidget {
       //   ),
       // ),
       body: Container(
-        color: Color.fromRGBO(230, 237, 247, 1),
+        color: const Color.fromRGBO(230, 237, 247, 1),
         child: Stack(
           children: [
             Column(
@@ -28,12 +28,12 @@ class DetailsPage extends StatelessWidget {
                 Container(
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height / 2,
-                  color: Color.fromRGBO(20, 80, 166, 1),
+                  color: const Color.fromRGBO(20, 80, 166, 1),
                 ),
                 Container(
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height / 2.6,
-                  color: Color.fromRGBO(12, 68, 145, 1),
+                  color: const Color.fromRGBO(12, 68, 145, 1),
                 )
               ],
             ),
@@ -89,21 +89,76 @@ class DetailsPage extends StatelessWidget {
                     ],
                   ),
                 )),
-            Center(
-              child: CustomPaint(
-                painter: CustomClockPaint(
+            Stack(
+              children: [
+                Center(
+                  child: CustomPaint(
+                    painter: CustomClockPaint(),
+                    child: TextWidget(
+                      text: "2:45 pm",
+                      size: 20,
+                    ),
+                  ),
                 ),
-                child: TextWidget(text: "2:45 pm",size: 20,),
-              ),
+                Positioned(
+                  top: 280,
+                  left: 270,
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: PRIMARY_COLOR,
+                    ),
+                    child: const Icon(
+                      Icons.local_hospital_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 479,
+                  left: 74,
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 4, color: Colors.white),
+                      shape: BoxShape.circle,
+                      color: PRIMARY_COLOR,
+                    ),
+                    child: const Icon(
+                      Icons.masks_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 529,
+                  left: 184,
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 4, color: Colors.white),
+                      shape: BoxShape.circle,
+                      color: PRIMARY_COLOR,
+                    ),
+                    child: const Icon(
+                      Icons.medication_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
             ),
             Positioned(
-
               bottom: MediaQuery.of(context).size.height / 18,
               child: PatientsHorizontalListSectionView(
                 isDetail: true,
                 onListEndReached: () {
-                  final snackBar= SnackBar(
-                    content: Text('This is the end of the List!!'),
+                  const snackBar = SnackBar(
+                    content: const Text('This is the end of the List!!'),
                     backgroundColor: Colors.black,
                     elevation: 10,
                     behavior: SnackBarBehavior.floating,
