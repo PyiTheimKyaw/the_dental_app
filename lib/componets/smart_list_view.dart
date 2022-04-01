@@ -26,6 +26,7 @@ class _SmarthorizontalListViewState extends State<SmarthorizontalListView> {
         if (_scrollController.position.pixels == 0) {
           print("Start of the list view");
         } else {
+          print("End of the list view");
           widget.onListEndReached();
         }
       }

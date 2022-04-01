@@ -25,7 +25,7 @@ class PatientsHorizontalListSectionView extends StatelessWidget {
             );
           },
           onListEndReached: () {
-            onListEndReached();
+            this.onListEndReached();
           }),
     );
   }

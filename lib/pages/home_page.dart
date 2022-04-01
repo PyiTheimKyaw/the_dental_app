@@ -25,6 +25,7 @@ class HomePage extends StatelessWidget {
   ];
   List<int> eventList = [1, 2, 3, 4, 5];
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,154 +70,159 @@ class HomePage extends StatelessWidget {
 
                             // color: Colors.red,
                             height: MediaQuery.of(context).size.height / 2,
-                            child: ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              itemCount: 1,
-                              itemBuilder: (context, index) {
-                                return Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: 54,
-                                      // height: MediaQuery.of(context).size.height / 2,
-                                      child: ListView.builder(
-                                          scrollDirection: Axis.vertical,
-                                          shrinkWrap: true,
-                                          itemCount: timeList.length,
-                                          itemBuilder: (context, index) {
-                                            return Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  padding: EdgeInsets.symmetric(
-                                                      vertical: 20),
-                                                  width: 50,
-                                                  child: Text(timeList[index]),
-                                                ),
-                                              ],
-                                            );
-                                          }),
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          width: 2,
-                                          height: 70,
-                                          child: DottedLine(
-                                            direction: Axis.vertical,
-                                            lineLength: double.infinity,
-                                            lineThickness: 1.0,
-                                            dashLength: 5,
-                                            dashColor: Color.fromRGBO(
-                                                196, 203, 220, 0.5),
-                                            // dashGradient: [Colors.red, Colors.blue],
-                                            dashGapLength: 8,
-                                            dashGapColor: Colors.black,
-                                            // dashGapGradient: [Colors.red, Colors.blue],
-                                            dashGapRadius: 0.0,
-                                          ),
-                                        ),
-                                        Container(
-                                          height: 15,
-                                          width: 15,
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              border: Border.all(
-                                                  width: 2,
-                                                  color: Colors.white24)),
-                                          child: Container(
-                                            height: 2,
+                            child: RefreshIndicator(
+                              onRefresh: refreshList,
+                              backgroundColor: Colors.white,
+                              color: Colors.black,
+                              child: ListView.builder(
+                                scrollDirection: Axis.vertical,
+                                itemCount: 1,
+                                itemBuilder: (context, index) {
+                                  return (!index.isNaN) ?Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: 54,
+                                        // height: MediaQuery.of(context).size.height / 2,
+                                        child: ListView.builder(
+                                            scrollDirection: Axis.vertical,
+                                            shrinkWrap: true,
+                                            itemCount: timeList.length,
+                                            itemBuilder: (context, index) {
+                                              return Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    padding: EdgeInsets.symmetric(
+                                                        vertical: 20),
+                                                    width: 50,
+                                                    child: Text(timeList[index]),
+                                                  ),
+                                                ],
+                                              );
+                                            }),
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
                                             width: 2,
+                                            height: 70,
+                                            child: DottedLine(
+                                              direction: Axis.vertical,
+                                              lineLength: double.infinity,
+                                              lineThickness: 1.0,
+                                              dashLength: 5,
+                                              dashColor: Color.fromRGBO(
+                                                  196, 203, 220, 0.5),
+                                              // dashGradient: [Colors.red, Colors.blue],
+                                              dashGapLength: 8,
+                                              dashGapColor: Colors.black,
+                                              // dashGapGradient: [Colors.red, Colors.blue],
+                                              dashGapRadius: 0.0,
+                                            ),
+                                          ),
+                                          Container(
+                                            height: 15,
+                                            width: 15,
                                             decoration: BoxDecoration(
-                                                color: Colors.blue,
                                                 shape: BoxShape.circle,
                                                 border: Border.all(
                                                     width: 2,
-                                                    color: Colors.white60)),
-                                          ),
-                                        ),
-                                        // Container(
-                                        //   height:370,
-                                        //   child: CustomPaint(
-                                        //     painter: VerticalTimeLine(),
-                                        //   ),
-                                        // ),
-                                        Container(
-                                          width: 2,
-                                          height: 370,
-                                          child: DottedLine(
-                                            direction: Axis.vertical,
-                                            lineLength: double.infinity,
-                                            lineThickness: 1.0,
-                                            dashLength: 5,
-                                            dashColor: Colors.black,
-                                            // dashGradient: [Colors.red, Colors.blue],
-                                            dashGapLength: 8,
-                                            dashGapColor: Colors.black,
-                                            // dashGapGradient: [Colors.red, Colors.blue],
-                                            dashGapRadius: 0.0,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Container(
-                                      // width: 300,
-                                      width: MediaQuery.of(context).size.width /
-                                          1.3,
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              1.8,
-                                      color: Color.fromRGBO(221, 236, 249, 1),
-                                      child: ListView.builder(
-                                        scrollDirection: Axis.vertical,
-                                        shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
-                                        itemCount: eventList.length,
-                                        itemBuilder: (context, index) {
-                                          return Container(
-                                            padding: EdgeInsets.only(
-                                                top: 19, right: 50),
-                                            color: (eventList[index] == 1)
-                                                ? Color.fromRGBO(
-                                                    240, 246, 252, 1)
-                                                : Color.fromRGBO(
-                                                    221, 236, 249, 1),
-                                            child: EventItemView(
-                                              iconBgColor:
-                                                  (eventList[index] == 1)
-                                                      ? Color.fromRGBO(
-                                                          228, 234, 241, 1)
-                                                      : Color.fromRGBO(
-                                                          210, 234, 253, 1),
-                                              iconColor: (eventList[index] == 1)
-                                                  ? Color.fromRGBO(
-                                                      184, 191, 198, 1)
-                                                  : Color.fromRGBO(
-                                                      119, 157, 189, 1),
-                                              textColor: (eventList[index] == 1)
-                                                  ? Color.fromRGBO(
-                                                      209, 214, 219, 1)
-                                                  : Colors.black,
-                                              onTap: () {
-                                                (eventList[index] == 1)
-                                                    ? () {}
-                                                    : _navigateToDetailsScreen(
-                                                        context);
-                                              },
+                                                    color: Colors.white24)),
+                                            child: Container(
+                                              height: 2,
+                                              width: 2,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.blue,
+                                                  shape: BoxShape.circle,
+                                                  border: Border.all(
+                                                      width: 2,
+                                                      color: Colors.white60)),
                                             ),
-                                          );
-                                        },
+                                          ),
+                                          // Container(
+                                          //   height:370,
+                                          //   child: CustomPaint(
+                                          //     painter: VerticalTimeLine(),
+                                          //   ),
+                                          // ),
+                                          Container(
+                                            width: 2,
+                                            height: 370,
+                                            child: DottedLine(
+                                              direction: Axis.vertical,
+                                              lineLength: double.infinity,
+                                              lineThickness: 1.0,
+                                              dashLength: 5,
+                                              dashColor: Colors.black,
+                                              // dashGradient: [Colors.red, Colors.blue],
+                                              dashGapLength: 8,
+                                              dashGapColor: Colors.black,
+                                              // dashGapGradient: [Colors.red, Colors.blue],
+                                              dashGapRadius: 0.0,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                  ],
-                                );
-                              },
+                                      Container(
+                                        // width: 300,
+                                        width: MediaQuery.of(context).size.width /
+                                            1.3,
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                1.8,
+                                        color: Color.fromRGBO(221, 236, 249, 1),
+                                        child: ListView.builder(
+                                          scrollDirection: Axis.vertical,
+                                          shrinkWrap: true,
+                                          physics: NeverScrollableScrollPhysics(),
+                                          itemCount: eventList.length,
+                                          itemBuilder: (context, index) {
+                                            return Container(
+                                              padding: EdgeInsets.only(
+                                                  top: 19, right: 50),
+                                              color: (eventList[index] == 1)
+                                                  ? Color.fromRGBO(
+                                                      240, 246, 252, 1)
+                                                  : Color.fromRGBO(
+                                                      221, 236, 249, 1),
+                                              child: EventItemView(
+                                                iconBgColor:
+                                                    (eventList[index] == 1)
+                                                        ? Color.fromRGBO(
+                                                            228, 234, 241, 1)
+                                                        : Color.fromRGBO(
+                                                            210, 234, 253, 1),
+                                                iconColor: (eventList[index] == 1)
+                                                    ? Color.fromRGBO(
+                                                        184, 191, 198, 1)
+                                                    : Color.fromRGBO(
+                                                        119, 157, 189, 1),
+                                                textColor: (eventList[index] == 1)
+                                                    ? Color.fromRGBO(
+                                                        209, 214, 219, 1)
+                                                    : Colors.black,
+                                                onTap: () {
+                                                  (eventList[index] == 1)
+                                                      ? () {}
+                                                      : _navigateToDetailsScreen(
+                                                          context);
+                                                },
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ) : CircularProgressIndicator();
+                                },
+                              ),
                             ),
                           ),
                         ],
@@ -224,9 +230,20 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               Positioned(
-                bottom: 500,
+                bottom: MediaQuery.of(context).size.height/1.7,
                 child: PatientsHorizontalListSectionView(
-                  onListEndReached: () {},
+                  onListEndReached: () {
+                   final snackBar= SnackBar(
+                      content: Text('This is the end of the List!!'),
+                      backgroundColor: Colors.black,
+                      elevation: 10,
+                      behavior: SnackBarBehavior.floating,
+                      margin: EdgeInsets.all(10),
+                    );
+                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    // Builder context.showSnackBar(snackBar);
+                    // RefreshProgressIndicator(value: 2,color: Colors.red,backgroundColor: Colors.blue,);
+                  },
                 ),
               ),
             ],
@@ -234,7 +251,9 @@ class HomePage extends StatelessWidget {
         ));
   }
 }
-
+Future<Null> refreshList() async{
+  await Future.delayed(Duration(seconds: 5));
+}
 void _navigateToDetailsScreen(BuildContext context) {
   Navigator.push(
     context,

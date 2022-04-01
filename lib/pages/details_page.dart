@@ -91,7 +91,9 @@ class DetailsPage extends StatelessWidget {
                 )),
             Center(
               child: CustomPaint(
-                painter: CustomClockPaint(),
+                painter: CustomClockPaint(
+                ),
+                child: TextWidget(text: "2:45 pm",size: 20,),
               ),
             ),
             Positioned(
@@ -99,7 +101,16 @@ class DetailsPage extends StatelessWidget {
               bottom: MediaQuery.of(context).size.height / 18,
               child: PatientsHorizontalListSectionView(
                 isDetail: true,
-                onListEndReached: () {},
+                onListEndReached: () {
+                  final snackBar= SnackBar(
+                    content: Text('This is the end of the List!!'),
+                    backgroundColor: Colors.black,
+                    elevation: 10,
+                    behavior: SnackBarBehavior.floating,
+                    margin: EdgeInsets.all(10),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                },
               ),
             ),
           ],
