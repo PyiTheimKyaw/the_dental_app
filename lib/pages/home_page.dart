@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors,prefer_const_literals_to_create_immutables, sized_box_for_whitespace, prefer_final_fields
 
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 import 'package:the_dental_app/custom_painter/verticle_time_line.dart';
@@ -522,20 +523,33 @@ class SearchAndProfileSectionView extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 25.0),
-            child: Container(
-              width: 60,
-              height: 60,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: NetworkImage(
-                      'https://th.bing.com/th/id/OIP.fyl_kbazs9e4BDrBY2pIDQHaFj?pid=ImgDet&rs=1'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
+            child: Badge(
+                badgeContent: TextWidget(text: "1",),
+                child: PatientProfileView()),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class PatientProfileView extends StatelessWidget {
+  const PatientProfileView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 50,
+      height: 50,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        image: DecorationImage(
+          image: NetworkImage(
+              'https://th.bing.com/th/id/OIP.fyl_kbazs9e4BDrBY2pIDQHaFj?pid=ImgDet&rs=1'),
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
