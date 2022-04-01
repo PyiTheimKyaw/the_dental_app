@@ -48,7 +48,7 @@ class _TimeEventsListSectionViewState extends State<TimeEventsListSectionView> {
         scrollDirection: Axis.vertical,
         itemCount: 1,
         itemBuilder: (context, index) {
-          return (!index.isNaN)
+          return (widget.timeList.isNotEmpty)
               ? Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
