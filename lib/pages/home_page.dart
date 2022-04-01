@@ -71,160 +71,7 @@ class HomePage extends StatelessWidget {
 
                             // color: Colors.red,
                             height: MediaQuery.of(context).size.height / 2,
-                            child: RefreshIndicator(
-                              onRefresh: refreshList,
-                              backgroundColor: Colors.white,
-                              color: Colors.black,
-                              child: ListView.builder(
-                                scrollDirection: Axis.vertical,
-                                itemCount: 1,
-                                itemBuilder: (context, index) {
-                                  return (!index.isNaN) ?Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width: 54,
-                                        // height: MediaQuery.of(context).size.height / 2,
-                                        child: ListView.builder(
-                                            scrollDirection: Axis.vertical,
-                                            shrinkWrap: true,
-                                            itemCount: timeList.length,
-                                            itemBuilder: (context, index) {
-                                              return Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Container(
-                                                    padding: EdgeInsets.symmetric(
-                                                        vertical: 20),
-                                                    width: 50,
-                                                    child: Text(timeList[index]),
-                                                  ),
-                                                ],
-                                              );
-                                            }),
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            width: 2,
-                                            height: 70,
-                                            child: DottedLine(
-                                              direction: Axis.vertical,
-                                              lineLength: double.infinity,
-                                              lineThickness: 1.0,
-                                              dashLength: 5,
-                                              dashColor: Color.fromRGBO(
-                                                  196, 203, 220, 0.5),
-                                              // dashGradient: [Colors.red, Colors.blue],
-                                              dashGapLength: 8,
-                                              dashGapColor: Colors.black,
-                                              // dashGapGradient: [Colors.red, Colors.blue],
-                                              dashGapRadius: 0.0,
-                                            ),
-                                          ),
-                                          Container(
-                                            height: 15,
-                                            width: 15,
-                                            decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                border: Border.all(
-                                                    width: 2,
-                                                    color: Colors.white24)),
-                                            child: Container(
-                                              height: 2,
-                                              width: 2,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.blue,
-                                                  shape: BoxShape.circle,
-                                                  border: Border.all(
-                                                      width: 2,
-                                                      color: Colors.white60)),
-                                            ),
-                                          ),
-                                          // Container(
-                                          //   height:370,
-                                          //   child: CustomPaint(
-                                          //     painter: VerticalTimeLine(),
-                                          //   ),
-                                          // ),
-                                          Container(
-                                            width: 2,
-                                            height: 370,
-                                            child: DottedLine(
-                                              direction: Axis.vertical,
-                                              lineLength: double.infinity,
-                                              lineThickness: 1.0,
-                                              dashLength: 5,
-                                              dashColor: Colors.black,
-                                              // dashGradient: [Colors.red, Colors.blue],
-                                              dashGapLength: 8,
-                                              dashGapColor: Colors.black,
-                                              // dashGapGradient: [Colors.red, Colors.blue],
-                                              dashGapRadius: 0.0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Container(
-                                        // width: 300,
-                                        width: MediaQuery.of(context).size.width /
-                                            1.3,
-                                        height:
-                                            MediaQuery.of(context).size.height /
-                                                1.8,
-                                        color: Color.fromRGBO(221, 236, 249, 1),
-                                        child: ListView.builder(
-                                          scrollDirection: Axis.vertical,
-                                          shrinkWrap: true,
-                                          physics: NeverScrollableScrollPhysics(),
-                                          itemCount: eventList.length,
-                                          itemBuilder: (context, index) {
-                                            return Container(
-                                              padding: EdgeInsets.only(
-                                                  top: 19, right: 50),
-                                              color: (eventList[index] == 1)
-                                                  ? Color.fromRGBO(
-                                                      240, 246, 252, 1)
-                                                  : Color.fromRGBO(
-                                                      221, 236, 249, 1),
-                                              child: EventItemView(
-                                                iconBgColor:
-                                                    (eventList[index] == 1)
-                                                        ? Color.fromRGBO(
-                                                            228, 234, 241, 1)
-                                                        : Color.fromRGBO(
-                                                            210, 234, 253, 1),
-                                                iconColor: (eventList[index] == 1)
-                                                    ? Color.fromRGBO(
-                                                        184, 191, 198, 1)
-                                                    : Color.fromRGBO(
-                                                        119, 157, 189, 1),
-                                                textColor: (eventList[index] == 1)
-                                                    ? Color.fromRGBO(
-                                                        209, 214, 219, 1)
-                                                    : Colors.black,
-                                                onTap: () {
-                                                  (eventList[index] == 1)
-                                                      ? () {}
-                                                      : _navigateToDetailsScreen(
-                                                          context);
-                                                },
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ],
-                                  ) : CircularProgressIndicator();
-                                },
-                              ),
-                            ),
+                            child: TimeEventsListSectionView(timeList: timeList, eventList: eventList),
                           ),
                         ],
                       )),
@@ -250,6 +97,214 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ));
+  }
+}
+
+class TimeEventsListSectionView extends StatelessWidget {
+  const TimeEventsListSectionView({
+    Key? key,
+    required this.timeList,
+    required this.eventList,
+  }) : super(key: key);
+
+  final List<String> timeList;
+  final List<int> eventList;
+
+  @override
+  Widget build(BuildContext context) {
+    return RefreshIndicator(
+      onRefresh: refreshList,
+      backgroundColor: Colors.white,
+      color: Colors.black,
+      child: ListView.builder(
+        scrollDirection: Axis.vertical,
+        itemCount: 1,
+        itemBuilder: (context, index) {
+          return (!index.isNaN) ?Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TimeListSectionView(timeList: timeList),
+              SizedBox(
+                width: 5,
+              ),
+              VerticalLineSectionView(),
+              Container(
+                // width: 300,
+                width: MediaQuery.of(context).size.width /
+                    1.3,
+                height:
+                    MediaQuery.of(context).size.height /
+                        1.8,
+                color: Color.fromRGBO(221, 236, 249, 1),
+                child: EventsSectionView(eventList: eventList),
+              ),
+            ],
+          ) : CircularProgressIndicator();
+        },
+      ),
+    );
+  }
+}
+
+class TimeListSectionView extends StatelessWidget {
+  const TimeListSectionView({
+    Key? key,
+    required this.timeList,
+  }) : super(key: key);
+
+  final List<String> timeList;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 54,
+      // height: MediaQuery.of(context).size.height / 2,
+      child: ListView.builder(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          itemCount: timeList.length,
+          itemBuilder: (context, index) {
+            return Row(
+              crossAxisAlignment:
+                  CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(
+                      vertical: 20),
+                  width: 50,
+                  child: Text(timeList[index]),
+                ),
+              ],
+            );
+          }),
+    );
+  }
+}
+
+class VerticalLineSectionView extends StatelessWidget {
+  const VerticalLineSectionView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment:
+          CrossAxisAlignment.center,
+      children: [
+        Container(
+          width: 2,
+          height: 70,
+          child: DottedLine(
+            direction: Axis.vertical,
+            lineLength: double.infinity,
+            lineThickness: 1.0,
+            dashLength: 5,
+            dashColor: Color.fromRGBO(
+                196, 203, 220, 0.5),
+            // dashGradient: [Colors.red, Colors.blue],
+            dashGapLength: 8,
+            dashGapColor: Colors.black,
+            // dashGapGradient: [Colors.red, Colors.blue],
+            dashGapRadius: 0.0,
+          ),
+        ),
+        Container(
+          height: 15,
+          width: 15,
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                  width: 2,
+                  color: Colors.white24)),
+          child: Container(
+            height: 2,
+            width: 2,
+            decoration: BoxDecoration(
+                color: Colors.blue,
+                shape: BoxShape.circle,
+                border: Border.all(
+                    width: 2,
+                    color: Colors.white60)),
+          ),
+        ),
+        // Container(
+        //   height:370,
+        //   child: CustomPaint(
+        //     painter: VerticalTimeLine(),
+        //   ),
+        // ),
+        Container(
+          width: 2,
+          height: 370,
+          child: DottedLine(
+            direction: Axis.vertical,
+            lineLength: double.infinity,
+            lineThickness: 1.0,
+            dashLength: 5,
+            dashColor: Colors.black,
+            // dashGradient: [Colors.red, Colors.blue],
+            dashGapLength: 8,
+            dashGapColor: Colors.black,
+            // dashGapGradient: [Colors.red, Colors.blue],
+            dashGapRadius: 0.0,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class EventsSectionView extends StatelessWidget {
+  const EventsSectionView({
+    Key? key,
+    required this.eventList,
+  }) : super(key: key);
+
+  final List<int> eventList;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemCount: eventList.length,
+      itemBuilder: (context, index) {
+        return Container(
+          padding: EdgeInsets.only(
+              top: 13,right: 50),
+          color: (eventList[index] == 1)
+              ? Color.fromRGBO(
+                  240, 246, 252, 1)
+              : Color.fromRGBO(
+                  221, 236, 249, 1),
+          child: EventItemView(
+            iconBgColor:
+                (eventList[index] == 1)
+                    ? Color.fromRGBO(
+                        228, 234, 241, 1)
+                    : Color.fromRGBO(
+                        210, 234, 253, 1),
+            iconColor: (eventList[index] == 1)
+                ? Color.fromRGBO(
+                    184, 191, 198, 1)
+                : Color.fromRGBO(
+                    119, 157, 189, 1),
+            textColor: (eventList[index] == 1)
+                ? Color.fromRGBO(
+                    209, 214, 219, 1)
+                : Colors.black,
+            onTap: () {
+              (eventList[index] == 1)
+                  ? () {}
+                  : _navigateToDetailsScreen(
+                      context);
+            },
+          ),
+        );
+      },
+    );
   }
 }
 Future<Null> refreshList() async{
@@ -288,7 +343,7 @@ class EventItemView extends StatelessWidget {
             horizontal: 8.0,
             // vertical: 16,
           ),
-          height: 63,
+          height: 66,
           width: 80,
           decoration: BoxDecoration(
             color: Colors.white,
@@ -357,34 +412,6 @@ class EventItemView extends StatelessWidget {
   }
 }
 
-class TimeListView extends StatelessWidget {
-  final List<String> timeList;
-
-  TimeListView({required this.timeList});
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: timeList
-            .map(
-              (e) => Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 15.0,
-                ),
-                child: TextWidget(
-                  text: e,
-                  color: Colors.grey,
-                  size: 13.0,
-                ),
-              ),
-            )
-            .toList(),
-      ),
-    );
-  }
-}
 
 class TimeAndEventTitleView extends StatelessWidget {
   @override
@@ -434,46 +461,7 @@ class TimeAndEventTitleView extends StatelessWidget {
   }
 }
 
-class DottedLineSectionView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16),
-      child: DottedLine(
-        direction: Axis.vertical,
-        lineLength: double.infinity,
-        lineThickness: 1.0,
-        dashLength: 8,
-        dashColor: Color.fromRGBO(196, 203, 220, 0.5),
-        // dashGradient: [Colors.red, Colors.blue],
-        dashGapLength: 8,
-        dashGapColor: Colors.red,
-        // dashGapGradient: [Colors.red, Colors.blue],
-        dashGapRadius: 0.0,
-      ),
-    );
-  }
-}
 
-// class MyPatientsHorizontalListView extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       margin: EdgeInsets.only(top: 20, right: 20),
-//       height: 130,
-//       width: MediaQuery.of(context).size.width,
-//       child: ListView.builder(
-//         padding: EdgeInsets.symmetric(horizontal: 20),
-//         scrollDirection: Axis.horizontal,
-//         shrinkWrap: true,
-//         itemCount: 10,
-//         itemBuilder: (BuildContext context, int index) {
-//           return PatientListView();
-//         },
-//       ),
-//     );
-//   }
-// }
 
 class SearchAndProfileSectionView extends StatelessWidget {
   @override
