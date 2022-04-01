@@ -5,18 +5,24 @@ import 'text_widget.dart';
 
 class PatientsHorizontalListSectionView extends StatelessWidget {
   final Function onListEndReached;
-  PatientsHorizontalListSectionView({required this.onListEndReached});
+  final bool isDetail;
+
+  PatientsHorizontalListSectionView(
+      {required this.onListEndReached, this.isDetail = false});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 20, right: 20),
-      height: 130,
+      height: (isDetail) ? 187 : 130,
       width: MediaQuery.of(context).size.width,
       child: SmarthorizontalListView(
           padding: EdgeInsets.symmetric(horizontal: 20),
           itemCount: 10,
           itemBuilder: (BuildContext context, int index) {
-            return PatientListView();
+            return PatientListView(
+              isDetail: isDetail,
+            );
           },
           onListEndReached: () {
             onListEndReached();
@@ -26,19 +32,48 @@ class PatientsHorizontalListSectionView extends StatelessWidget {
 }
 
 class PatientListView extends StatelessWidget {
+  final bool isDetail;
+
+  PatientListView({required this.isDetail});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(right: 10),
       padding: const EdgeInsets.all(10.0),
       height: 100.0,
-      width: MediaQuery.of(context).size.width / 2,
-      decoration: patientBoxDecoration(),
+      width: isDetail? 300 :200,
+      decoration: BoxDecoration(
+        color: (isDetail) ? Colors.white : Color.fromARGB(255, 26, 105, 198),
+        borderRadius: BorderRadius.circular(5.0),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          PlaceAndTimeSectionView(),
-          const Spacer(),
+          PlaceAndTimeSectionView(
+            isDetail: isDetail,
+          ),
+          isDetail ?Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextWidget(
+                  text: "Teeth Drilling",
+                  color: Colors.black,
+                  size: 15,
+                  isBold: true,
+                ),
+                TextWidget(
+                  text:
+                  "Dentists are instrumental in the early detection of oral cancer and systemic ",
+                  color: Colors.black,
+                ),
+                SizedBox(height: 12,),
+              ],
+            ),
+          ) : Spacer(),
+
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -50,7 +85,9 @@ class PatientListView extends StatelessWidget {
                 height: 30,
                 width: 30,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 50, 127, 223),
+                  color: isDetail
+                      ? Colors.white
+                      : Color.fromARGB(255, 50, 127, 223),
                   shape: BoxShape.circle,
                 ),
                 child: const Center(
@@ -70,6 +107,10 @@ class PatientListView extends StatelessWidget {
 }
 
 class PlaceAndTimeSectionView extends StatelessWidget {
+  final bool isDetail;
+
+  PlaceAndTimeSectionView({required this.isDetail});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -81,9 +122,11 @@ class PlaceAndTimeSectionView extends StatelessWidget {
             TextWidget(
               text: "Office No.238 ",
               isBold: true,
+              color: (isDetail) ? Colors.black : Colors.white,
             ),
             TextWidget(
               text: "/ 3 Patients",
+              color: (isDetail) ? Colors.black : Colors.white,
             ),
           ],
         ),
@@ -92,15 +135,18 @@ class PlaceAndTimeSectionView extends StatelessWidget {
         ),
         Row(
           children: [
-            const Icon(
+            Icon(
               Icons.timelapse,
-              color: Colors.white,
+              color: (isDetail) ? Colors.black : Colors.white,
               size: 10.0,
             ),
             const SizedBox(
               width: 5.0,
             ),
-            TextWidget(text: "8.30 AM - 2.00 PM"),
+            TextWidget(
+              text: "8.30 AM - 2.00 PM",
+              color: (isDetail) ? Colors.black : Colors.white,
+            ),
           ],
         ),
       ],
@@ -111,10 +157,12 @@ class PlaceAndTimeSectionView extends StatelessWidget {
 class PatientProfileView extends StatelessWidget {
   final double height;
   final double width;
+
   PatientProfileView({
     this.height = 30,
     this.width = 30,
   });
+
   @override
   Widget build(BuildContext context) {
     return Container(

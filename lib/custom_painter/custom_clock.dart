@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class CustomClock extends CustomPainter {
+class CustomClockPaint extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var outerCircle = Paint()
@@ -41,8 +41,8 @@ class CustomClock extends CustomPainter {
     //     Offset(size.width / 2, size.height / 2), 110, dottedCircle);
     for (int i = 0; i < numberOfDots; i++) {
       canvas.drawCircle(
-        Offset(centerX + sin(i * radiantStep) * 110,
-            centerY + cos(i * radiantStep) * 110),
+        Offset(centerX + sin(i * radiantStep) * 105,
+            centerY + cos(i * radiantStep) * 105),
         filledCircleRadius,
         paint,
       );

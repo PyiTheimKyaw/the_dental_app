@@ -89,8 +89,8 @@ class HomePage extends StatelessWidget {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Container(
-                                                  padding: EdgeInsets.only(
-                                                      bottom: 46),
+                                                  padding: EdgeInsets.symmetric(
+                                                      vertical: 20),
                                                   width: 50,
                                                   child: Text(timeList[index]),
                                                 ),
@@ -171,7 +171,7 @@ class HomePage extends StatelessWidget {
                                           1.3,
                                       height:
                                           MediaQuery.of(context).size.height /
-                                              1.89,
+                                              1.8,
                                       color: Color.fromRGBO(221, 236, 249, 1),
                                       child: ListView.builder(
                                         scrollDirection: Axis.vertical,
@@ -181,7 +181,7 @@ class HomePage extends StatelessWidget {
                                         itemBuilder: (context, index) {
                                           return Container(
                                             padding: EdgeInsets.only(
-                                                top: 15, right: 50),
+                                                top: 19, right: 50),
                                             color: (eventList[index] == 1)
                                                 ? Color.fromRGBO(
                                                     240, 246, 252, 1)
@@ -268,7 +268,7 @@ class EventItemView extends StatelessWidget {
             horizontal: 8.0,
             // vertical: 16,
           ),
-          height: 68,
+          height: 63,
           width: 80,
           decoration: BoxDecoration(
             color: Colors.white,
@@ -435,25 +435,25 @@ class DottedLineSectionView extends StatelessWidget {
   }
 }
 
-class MyPatientsHorizontalListView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 20, right: 20),
-      height: 130,
-      width: MediaQuery.of(context).size.width,
-      child: ListView.builder(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        itemCount: 10,
-        itemBuilder: (BuildContext context, int index) {
-          return PatientListView();
-        },
-      ),
-    );
-  }
-}
+// class MyPatientsHorizontalListView extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       margin: EdgeInsets.only(top: 20, right: 20),
+//       height: 130,
+//       width: MediaQuery.of(context).size.width,
+//       child: ListView.builder(
+//         padding: EdgeInsets.symmetric(horizontal: 20),
+//         scrollDirection: Axis.horizontal,
+//         shrinkWrap: true,
+//         itemCount: 10,
+//         itemBuilder: (BuildContext context, int index) {
+//           return PatientListView();
+//         },
+//       ),
+//     );
+//   }
+// }
 
 class SearchAndProfileSectionView extends StatelessWidget {
   @override
