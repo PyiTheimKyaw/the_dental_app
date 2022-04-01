@@ -128,15 +128,17 @@ class HomePage extends StatelessWidget {
                                           decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                               border: Border.all(
-                                                  width: 2, color: Colors.white24)),
+                                                  width: 2,
+                                                  color: Colors.white24)),
                                           child: Container(
                                             height: 2,
-                                            width: 2  ,
+                                            width: 2,
                                             decoration: BoxDecoration(
-                                              color: Colors.blue,
+                                                color: Colors.blue,
                                                 shape: BoxShape.circle,
                                                 border: Border.all(
-                                                    width: 2, color: Colors.white60)),
+                                                    width: 2,
+                                                    color: Colors.white60)),
                                           ),
                                         ),
                                         // Container(
@@ -223,7 +225,9 @@ class HomePage extends StatelessWidget {
               ),
               Positioned(
                 bottom: 500,
-                child: MyPatientsHorizontalListView(),
+                child: PatientsHorizontalListSectionView(
+                  onListEndReached: () {},
+                ),
               ),
             ],
           ),
@@ -444,7 +448,7 @@ class MyPatientsHorizontalListView extends StatelessWidget {
         shrinkWrap: true,
         itemCount: 10,
         itemBuilder: (BuildContext context, int index) {
-          return PatientHorizontalListSectionView();
+          return PatientListView();
         },
       ),
     );

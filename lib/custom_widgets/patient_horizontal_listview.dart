@@ -1,8 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:the_dental_app/componets/smart_list_view.dart';
 
 import 'text_widget.dart';
 
-class PatientHorizontalListSectionView extends StatelessWidget {
+class PatientsHorizontalListSectionView extends StatelessWidget {
+  final Function onListEndReached;
+  PatientsHorizontalListSectionView({required this.onListEndReached});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 20, right: 20),
+      height: 130,
+      width: MediaQuery.of(context).size.width,
+      child: SmarthorizontalListView(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          itemCount: 10,
+          itemBuilder: (BuildContext context, int index) {
+            return PatientListView();
+          },
+          onListEndReached: () {
+            onListEndReached();
+          }),
+    );
+  }
+}
+
+class PatientListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,7 +50,7 @@ class PatientHorizontalListSectionView extends StatelessWidget {
                 height: 30,
                 width: 30,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 50,127,223),
+                  color: const Color.fromARGB(255, 50, 127, 223),
                   shape: BoxShape.circle,
                 ),
                 child: const Center(
@@ -101,9 +124,8 @@ class PatientProfileView extends StatelessWidget {
         shape: BoxShape.circle,
         image: DecorationImage(
           fit: BoxFit.cover,
-          image:  NetworkImage(
+          image: NetworkImage(
               'https://th.bing.com/th/id/OIP.fyl_kbazs9e4BDrBY2pIDQHaFj?pid=ImgDet&rs=1'),
-
         ),
       ),
     );
@@ -112,7 +134,7 @@ class PatientProfileView extends StatelessWidget {
 
 BoxDecoration patientBoxDecoration() {
   return BoxDecoration(
-    color: const Color.fromARGB(255, 26,105,198),
+    color: const Color.fromARGB(255, 26, 105, 198),
     borderRadius: BorderRadius.circular(5.0),
   );
 }
