@@ -194,7 +194,7 @@ class SearchAndProfileSectionView extends StatelessWidget {
             padding: const EdgeInsets.only(top: 25.0),
             child: Badge(
                 badgeContent: TextWidget(
-                  text: "1",
+                  text: "4",
                 ),
                 child: PatientProfileView()),
           ),

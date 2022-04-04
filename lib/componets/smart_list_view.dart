@@ -25,7 +25,8 @@ class _SmarthorizontalListViewState extends State<SmarthorizontalListView> {
       if (_scrollController.position.atEdge) {
         if (_scrollController.position.pixels == 0) {
           print("Start of the list view");
-        } else {
+        }
+        else {
           print("End of the list view");
           widget.onListEndReached();
         }
@@ -38,7 +39,7 @@ class _SmarthorizontalListViewState extends State<SmarthorizontalListView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(top: 20, right: 20),
+        margin: EdgeInsets.only(top: 20, ),
         height: 130,
         width: MediaQuery.of(context).size.width,
         child: ListView.builder(

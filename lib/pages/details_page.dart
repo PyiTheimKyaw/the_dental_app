@@ -32,7 +32,7 @@ class DetailsPage extends StatelessWidget {
                 ),
                 Container(
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.height / 2.6,
+                  height: MediaQuery.of(context).size.height / 2.4,
                   color: const Color.fromRGBO(12, 68, 145, 1),
                 )
               ],
@@ -42,7 +42,7 @@ class DetailsPage extends StatelessWidget {
               right: 10.0,
               top: 30.0,
               child: SizedBox(
-                height: kToolbarHeight,
+                height: 56,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -64,6 +64,11 @@ class DetailsPage extends StatelessWidget {
                     const Spacer(),
                     const Icon(
                       Icons.search,
+                      color: Colors.white,
+                    ),
+                    SizedBox(width: 10,),
+                    const Icon(
+                      Icons.menu,
                       color: Colors.white,
                     ),
                   ],

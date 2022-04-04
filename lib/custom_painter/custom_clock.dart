@@ -7,6 +7,7 @@ import 'package:the_dental_app/utils/colors.dart';
 import 'dart:ui' as UI;
 
 import 'package:flutter/services.dart';
+
 Future<UI.Image> loadUiImage(String imageAssetPath) async {
   final ByteData data = await rootBundle.load(imageAssetPath);
   final Completer<UI.Image> completer = Completer();
@@ -15,6 +16,7 @@ Future<UI.Image> loadUiImage(String imageAssetPath) async {
   });
   return completer.future;
 }
+
 class CustomClockPaint extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
@@ -55,7 +57,7 @@ class CustomClockPaint extends CustomPainter {
       ..strokeWidth = 0.0
       ..color = const Color.fromRGBO(26, 69, 140, 1)
       ..style = PaintingStyle.fill;
-    var line=Paint()
+    var line = Paint()
       ..strokeWidth = 4.0
       ..color = Colors.white
       ..style = PaintingStyle.fill;
@@ -65,7 +67,8 @@ class CustomClockPaint extends CustomPainter {
 
     canvas.drawCircle(
         Offset(size.width / 2, size.height / 2), 135, outerSecondCircle);
-    canvas.drawLine(Offset(size.width*2,10), Offset(size.width *2.8 ,10), line);
+    canvas.drawLine(
+        Offset(size.width * 2, 10), Offset(size.width * 2.8, 10), line);
     // canvas.drawCircle(
     //     Offset(size.width / 2, size.height / 2), 110, dottedCircle);
 
@@ -78,13 +81,11 @@ class CustomClockPaint extends CustomPainter {
       );
     }
 
-
     canvas.drawCircle(Offset(size.width / 2, size.height / 2), 70, innerCircle);
     canvas.drawCircle(Offset(120, -100), 20, firstIcon);
     canvas.drawCircle(Offset(-75, 100), 20, secIcon);
     canvas.drawCircle(Offset(35, 150), 20, thirdIcon);
     // canvas.drawImage(loadUiImage("imageAssetPath"), Offset(50.0, 50.0), paint);
-
   }
 
   @override
